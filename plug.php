@@ -30,7 +30,7 @@
       add_action('init', array($this, "custom_post_type"));
     }
    
-
+    
     function sayHello($arg){
       echo  $arg; 
     }
@@ -52,6 +52,10 @@
 
     function custom_post_type () {
       register_post_type('book', ['public' => true, "label" => "Book"]);
+    }
+
+    function enqueue() {
+      wp_enqueue_style("mypluginstyle", plugins_url("./assets/styles.css", __FILE__ ) );
     }
  }
 
