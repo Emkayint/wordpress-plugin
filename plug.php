@@ -30,7 +30,9 @@
       add_action('init', array($this, "custom_post_type"));
     }
    
-    
+    function register() {
+      add_action("admin_enqueue_scripts", array($this, "enqueue"));
+    }
     function sayHello($arg){
       echo  $arg; 
     }
@@ -55,13 +57,13 @@
     }
 
     function enqueue() {
-      wp_enqueue_style("mypluginstyle", plugins_url("./assets/styles.css", __FILE__ ) );
+      wp_enqueue_style("mypluginstyle", plugins_url("/assets/styles.css", __FILE__ ) );
     }
  }
 
  if (class_exists("SamplePlugin")) {
   $init1 = new SamplePlugin();
-  // $init1 -> sayHello("Emkay");
+  $init1 -> register();
  }
 
 // activate plugin by calling class method activate
